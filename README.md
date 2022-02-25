@@ -9,15 +9,13 @@ This project helps how to implement pagination in RecyclerView
 # Screenshots
 
 <figure>
-    <img src="screenshots/CompletelyLoaded.jpeg"
-         alt="Albuquerque, New Mexico" width="400">
-    <figcaption>A single track trail outside of Albuquerque, New Mexico.</figcaption>
+    <img src="screenshots/CompletelyLoaded.jpeg" width="400">
+    <figcaption>Completely loaded images from server.</figcaption>
 </figure>
 
 <figure>
-    <img src="screenshots/LoadingNewItems.jpeg"
-         alt="Albuquerque, New Mexico" width="400">
-    <figcaption>A single track trail outside of Albuquerque, New Mexico.</figcaption>
+    <img src="screenshots/LoadingNewItems.jpeg" width="400">
+    <figcaption>Loading New items when scrolled to last position.</figcaption>
 </figure>
 <video width="400" height="250" controls>
   <source src="screenshots/DemoVideo.mp4" type="video/mp4">
