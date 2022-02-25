@@ -19,11 +19,9 @@ This project helps how to implement pagination in RecyclerView
          alt="Albuquerque, New Mexico" width="400">
     <figcaption>A single track trail outside of Albuquerque, New Mexico.</figcaption>
 </figure>
-<figure>
 <video width="400" height="250" controls>
   <source src="screenshots/DemoVideo.mp4" type="video/mp4">
-</video><figcaption>Demo video to demonstrate paging in recyclerview.</figcaption>
-</figure>
+</video>
 
 ## Thanks for reading💯💯
 
