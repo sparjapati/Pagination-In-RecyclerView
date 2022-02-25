@@ -13,28 +13,57 @@ import retrofit2.Response
 
 class HomeScreenViewModel : ViewModel() {
 
-    private val _photoItems: MutableLiveData<ArrayList<PhotoItem>> = MutableLiveData(ArrayList())
-    val photoItems: LiveData<ArrayList<PhotoItem>>
+    private val _photoItems: MutableLiveData<ArrayList<PhotoItem?>> = MutableLiveData(ArrayList())
+    val photoItems: LiveData<ArrayList<PhotoItem?>>
         get() = _photoItems
 
-    private val currPage = 1
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
+    private var currPage = 1
 
     init {
         fetchPhotoItems()
     }
 
     private fun fetchPhotoItems() {
+        startLoading()
         PhotoApi.apiService.getPhotoItems(currPage).enqueue(object : Callback<ArrayList<PhotoItem>> {
             override fun onResponse(call: Call<ArrayList<PhotoItem>>, response: Response<ArrayList<PhotoItem>>) {
-                Log.d(TAG, "onResponse: ${response.body()!!.size} items received")
-                _photoItems.value = response.body()
+//                Log.d(TAG, "onResponse: ${response.body()?.size} items found")
+//                Log.d(TAG, "onResponse: ${_photoItems.value!!.size}")
+                stopLoading()
+                val list = _photoItems.value!!
+                response.body()?.let { list.addAll(it) }
+                _photoItems.postValue(list)
+//                Log.d(TAG, "onResponse: ${_photoItems.value!!.size}")
             }
 
             override fun onFailure(call: Call<ArrayList<PhotoItem>>, t: Throwable) {
                 Log.d(TAG, "onFailure: ${t.message}")
+                stopLoading()
             }
-
         })
     }
 
+    fun loadMoreItems() {
+        currPage++
+        fetchPhotoItems()
+    }
+
+
+    private fun startLoading() {
+        _isLoading.value = true
+        val list = _photoItems.value!!
+        list.add(null)
+        _photoItems.postValue(list)
+    }
+
+    private fun stopLoading() {
+        _isLoading.value = false
+        val list = _photoItems.value!!
+        list.removeLast()
+        _photoItems.postValue(list)
+    }
 }
