@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 super.onScrolled(recyclerView, dx, dy)
                 val llm = recyclerView.layoutManager as LinearLayoutManager
                 val lastVisibleItems = llm.findLastCompletelyVisibleItemPosition()
-                if (!(viewModel.isLoading.value)!! && lastVisibleItems >= viewModel.photoItems.value!!.size - 2) {
+                if (!(viewModel.isLoading.value!!) && (viewModel.photoItems.value!!.size > 0) && (lastVisibleItems == viewModel.photoItems.value!!.size - 1)) {
 //                    Log.d(TAG, "onScrolled: loading new items")
                     viewModel.loadMoreItems()
                 }

@@ -37,6 +37,7 @@ class HomeScreenRecyclerViewAdapter : ListAdapter<PhotoItem?, RecyclerView.ViewH
 
     //    why I override this method
     //    check this -> https://stackoverflow.com/questions/49726385/listadapter-not-updating-item-in-recyclerview
+    //    and this -> https://stackoverflow.com/a/57848424/12388845
     override fun submitList(list: List<PhotoItem?>?) {
 
         super.submitList(list?.let { ArrayList(it) })
